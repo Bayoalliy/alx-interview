@@ -6,6 +6,8 @@ function that creates a pascal triangle
 
 
 def pascal_triangle(n):
+    """ pascal triangle function """
+
     triangle = []
 
     for row in range(n):
