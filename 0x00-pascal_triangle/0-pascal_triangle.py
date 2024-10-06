@@ -4,6 +4,7 @@
 function that creates a pascal triangle
 """
 
+
 def pascal_triangle(n):
     triangle = []
 
@@ -22,7 +23,6 @@ def pascal_triangle(n):
 
                 else:
                     new_row.append(num + last_row[idx - 1])
-                
                 if idx == len(last_row) - 1:
                     new_row.append(1)
                 idx += 1
