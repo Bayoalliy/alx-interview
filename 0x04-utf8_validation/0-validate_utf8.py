@@ -40,4 +40,6 @@ def validUTF8(data):
                 return False
             sbsqnt_byte -= 1
 
+    if sbsqnt_byte:
+        return False
     return True
