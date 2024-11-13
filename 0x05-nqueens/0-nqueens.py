@@ -45,7 +45,3 @@ def main():
     queens = [[i, -1] for i in range(n)]
 
     find_nqueen(queens, 0, n)
-
-
-if __name__ == "__main__":
-    main()
