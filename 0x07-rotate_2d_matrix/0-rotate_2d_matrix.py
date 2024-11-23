@@ -2,7 +2,6 @@
 """
 Rotating a 2D matrix by 90 deg clockwise
 """
-from math import floor
 
 
 def rotate(matrix, col, x, start_idx):
@@ -36,7 +35,7 @@ def rotate_mtx(matrix, size, a):
         for i in range(1, 4):
             rotate(matrix, j, i, a)
 
-    rotate_mtx(matrix, floor(size/2), a + 1)
+    rotate_mtx(matrix, size // 2, a + 1)
 
 
 def rotate_2d_matrix(matrix):
