@@ -42,7 +42,7 @@ def print_logs(dic):
 
 
 def handler(signum, frame):
-    """handles Ctrl c"""
+    """handles Ctrl c Keyinterrupt"""
     print_logs(dic)
 
 
