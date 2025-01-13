@@ -2,7 +2,7 @@
 """
 Write a script that reads stdin line by line and computes metrics:
 
-Input format: 
+Input format:
 <IP Address> - [<date>] "GET /projects/260 HTTP/1.1" <status code> <file size>
 (if the format is not this one, the line must be skipped)
 
@@ -49,29 +49,28 @@ signal.signal(signal.SIGINT, handler)
 
 def parse_line():
     """extract status code and calculates total file size"""
-    request_patt = r'^(((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\s-\s\[(?:(?:19|20)\d{2})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])\s(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])(\.\d+)?\]\s\"(GET|POST|DELETE|PUT)\s+(/[^\s]*)\s+(HTTP/1\.[01]|HTTP/2)\"\s+(200|301|400|500|404|403|405|401)\s+\d+)$'
-    st_code_patt = r" \d{3} "
+    st_code_patt = r"\s(200|301|400|500|404|403|405|401)\s"
     f_size_patt = r" \d+$"
     i = 1
     for line in sys.stdin:
-        if re.match(request_patt, line.strip()):
-            # get status code
-            st_code = re.search(
-                    st_code_patt, line.strip()).group().strip()
-            f_size = re.search(
-                    f_size_patt, line.strip()).group().strip()
+        # get status code
+        st_code = re.search(
+                st_code_patt, line.strip()).group().strip()
+        f_size = re.search(
+                f_size_patt, line.strip()).group().strip()
 
-            if st_code and st_code in dic:
-                dic[st_code] += 1
-            elif st_code and st_code not in dic:
-                dic[st_code] = 1
-            if f_size and st_code:
-                dic['f_size'] += int(f_size)
+        if st_code and st_code in dic:
+            dic[st_code] += 1
+        elif st_code and st_code not in dic:
+            dic[st_code] = 1
+        if f_size:
+            dic['f_size'] += int(f_size)
 
         if i > 9 and i % 10 == 0:
             print_logs(dic)
         i += 1
     print_logs(dic)
+
 
 if __name__ == '__main__':
     parse_line()
