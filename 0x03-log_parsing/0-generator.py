@@ -6,7 +6,7 @@ import datetime
 """
 hhhsjsjsjjdksksskksksjsjsjsjskskskkskkkz
 """
-for i in range(30):
+for i in range(10):
     sleep(random.random())
     sys.stdout.write("{:d}.{:d}.{:d}.{:d} - [{}] \"GET /projects/260 HTTP/1.1\" {} {}\n".format(
         random.randint(1, 255), random.randint(1, 255), random.randint(1, 255), random.randint(1, 255),

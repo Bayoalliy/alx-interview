@@ -71,7 +71,7 @@ def parse_line():
         if i > 9 and i % 10 == 0:
             print_logs(dic)
         i += 1
-
+    print_logs(dic)
 
 if __name__ == '__main__':
     parse_line()
