@@ -54,10 +54,12 @@ def parse_line():
     i = 1
     for line in sys.stdin:
         # get status code
-        st_code = re.search(
-                st_code_patt, line.strip()).group().strip()
-        f_size = re.search(
-                f_size_patt, line.strip()).group().strip()
+        st_code = re.search(st_code_patt, line.strip())
+        if st_code:
+            st_code = st_code.group().strip()
+        f_size = re.search(f_size_patt, line.strip())
+        if f_size:
+            f_size = f_size.group().strip()
 
         if st_code and st_code in dic:
             dic[st_code] += 1
